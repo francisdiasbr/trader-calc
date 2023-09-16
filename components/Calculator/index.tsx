@@ -4,83 +4,117 @@ import * as S from './styles';
 export const Calculator = () => {
   return (
     <S.Container>
-      <table>
-        <th colSpan={2}>
+      <div>
+        <h3>
           BACK-LAY
-        </th>
-        <th colSpan={2}>
-          Resultados
-        </th>
-        <tr>
-          <S.TableData>1-APOSTAR EM BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>LUCRO BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>ODD BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>2-APOSTAR EM LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>ODD LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>LUCRO LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>COMISSÃO</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>GANHOS LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>-</S.TableData>
-          <S.TableData>-</S.TableData>
-          <S.TableData>GANHOS BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-      </table>
+        </h3>
+        <S.Row>
+          <S.Cell>
+            <S.Text>1-APOSTAR EM BACK</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>LUCRO BACK</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>ODD BACK</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>2-APOSTAR EM LAY</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+          </S.Row>
+          <S.Row>
+          <S.Cell>
+            <S.Text>ODD LAY</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>LUCRO LAY</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>COMISSÃO</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>GANHOS LAY</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>-</S.Text>
+            <S.Text>-</S.Text>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>GANHOS BACK</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+      </div>
       <br/>
-      <table>
-        <th colSpan={2}>
+      <div>
+        <h3>
           LAY-BACK
-        </th>
-        <th colSpan={2}>
-          Resultados
-        </th>
-        <tr>
-          <S.TableData>1-APOSTAR EM LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>LUCRO LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>ODD LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>2-APOSTAR EM BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>ODD BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>LUCRO BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>COMISSÃO</S.TableData>
-          <S.TableData>$</S.TableData>
-          <S.TableData>GANHOS BACK</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-        <tr>
-          <S.TableData>-</S.TableData>
-          <S.TableData>-</S.TableData>
-          <S.TableData>GANHOS LAY</S.TableData>
-          <S.TableData>$</S.TableData>
-        </tr>
-      </table>
+        </h3>
+        <S.Row>
+          <S.Cell>
+            <S.Text>1-APOSTAR EM LAY</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>LUCRO LAY</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>ODD LAY</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>2-APOSTAR EM BACK</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>ODD BACK</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>LUCRO BACK</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+        <S.Row>
+          <S.Cell>
+            <S.Text>COMISSÃO</S.Text>
+            <S.Input></S.Input>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>GANHOS BACK</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+          </S.Row>
+          <S.Row>
+          <S.Cell>
+            <S.Text>-</S.Text>
+            <S.Text>-</S.Text>
+          </S.Cell>
+          <S.Cell>
+            <S.Text>GANHOS LAY</S.Text>
+            <S.Result>$</S.Result>
+          </S.Cell>
+        </S.Row>
+      </div>
     </S.Container>
   )
 }
