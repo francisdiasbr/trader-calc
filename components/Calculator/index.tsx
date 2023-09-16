@@ -1,120 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import * as S from './styles';
+import {BackToLayComponent, LayToBackComponent} from './Tables';
 
 export const Calculator = () => {
+  const [amountBack, setAmountBack] = useState('');
+  const [oddBack, setOddBack] = useState('');
+  const [profitBack, setProfitBack] = useState('');
+
+  const handleOddBackChange = (event) => {
+    const newOddBack = event.target.value;
+    setOddBack(newOddBack);
+    calculateBackProfit(newOddBack, amountBack);
+  };
+
+  const handleBetInBackChange = (event) => {
+    const newApostarEmBack = event.target.value;
+    setAmountBack(newApostarEmBack);
+    calculateBackProfit(oddBack, newApostarEmBack);
+  };
+
+  const calculateBackProfit = (odd, apostar) => {
+    const oddBackValue = parseFloat(odd.replace(',', '.'));
+    const apostarEmBackValue = parseFloat(apostar.replace(',', '.'));
+
+    if (!isNaN(oddBackValue) && !isNaN(apostarEmBackValue)) {
+      const lucro = (oddBackValue - 1) * apostarEmBackValue;
+      setProfitBack(lucro.toFixed(4));
+    } else {
+      setProfitBack('');
+    }
+  };
+
   return (
     <S.Container>
-      <div>
-        <h3>
-          BACK-LAY
-        </h3>
-        <S.Row>
-          <S.Cell>
-            <S.Text>1-APOSTAR EM BACK</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>LUCRO BACK</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>ODD BACK</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>2-APOSTAR EM LAY</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-          </S.Row>
-          <S.Row>
-          <S.Cell>
-            <S.Text>ODD LAY</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>LUCRO LAY</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>COMISSÃO</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>GANHOS LAY</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>-</S.Text>
-            <S.Text>-</S.Text>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>GANHOS BACK</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-      </div>
-      <br/>
-      <div>
-        <h3>
-          LAY-BACK
-        </h3>
-        <S.Row>
-          <S.Cell>
-            <S.Text>1-APOSTAR EM LAY</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>LUCRO LAY</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>ODD LAY</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>2-APOSTAR EM BACK</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>ODD BACK</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>LUCRO BACK</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-        <S.Row>
-          <S.Cell>
-            <S.Text>COMISSÃO</S.Text>
-            <S.Input></S.Input>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>GANHOS BACK</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-          </S.Row>
-          <S.Row>
-          <S.Cell>
-            <S.Text>-</S.Text>
-            <S.Text>-</S.Text>
-          </S.Cell>
-          <S.Cell>
-            <S.Text>GANHOS LAY</S.Text>
-            <S.Result>$</S.Result>
-          </S.Cell>
-        </S.Row>
-      </div>
+      <BackToLayComponent 
+        amountBack={amountBack}
+        handleBetInBackChange={handleBetInBackChange}
+        handleOddBackChange={handleOddBackChange}
+        oddBack={oddBack}
+        profitBack={profitBack}
+      />
+      <br />
+      <LayToBackComponent 
+      />
     </S.Container>
   )
 }
