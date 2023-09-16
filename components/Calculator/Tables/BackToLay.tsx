@@ -6,8 +6,11 @@ const BackToLayComponent = ({
   amountBack,
   handleBetInBackChange,
   handleOddBackChange,
+  handleOddLayChange,
   oddBack,
-  profitBack
+  oddLay,
+  profitBack,
+  profitLay
 }: BackToLayComponentProps) => {
   return (
     <div>
@@ -43,11 +46,14 @@ const BackToLayComponent = ({
       <S.Row>
         <S.Cell>
           <S.Text>ODD LAY</S.Text>
-          <S.Input></S.Input>
+          <S.Input
+            onChange={handleOddLayChange}
+            value={oddLay}
+          />
         </S.Cell>
         <S.Cell>
           <S.Text>LUCRO LAY</S.Text>
-          <S.Result>$</S.Result>
+          <S.Result>{profitLay}</S.Result>
         </S.Cell>
       </S.Row>
       <S.Row>
