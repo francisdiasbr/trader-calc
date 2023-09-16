@@ -5,12 +5,11 @@ const Footer = () => {
   return (
     <S.Footer>
       <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        href="https://github.com/francisdiasbr"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{' '}
-        <S.Logo src="/vercel.svg" alt="Vercel" />
+        Powered by franps
       </a>
     </S.Footer>
   );
