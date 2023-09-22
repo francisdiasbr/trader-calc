@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from './styles';
 import {BackToLayComponent, LayToBackComponent} from './Tables';
@@ -7,10 +7,11 @@ import {formatOdd} from './utils';
 export const Calculator = () => {
   const [amountBack, setAmountBack] = useState('');
   const [amountLay, setAmountLay] = useState('');
+  const [amountLayToInvest, setAmountLayToInvest] = useState(''); // j4
   const [oddBack, setOddBack] = useState('');
-  const [oddLay, setOddLay] = useState('');
+  const [oddLay, setOddLay] = useState(''); // h5
   const [profitBack, setProfitBack] = useState('');
-  const [profitLay, setProfitLay] = useState('');
+  const [profitLay, setProfitLay] = useState(''); // j5
 
   const handleBetInBackChange = (event) => {
     const newBetInBack = event.target.value;
@@ -28,6 +29,7 @@ export const Calculator = () => {
     const newOddLay = event.target.value;
     setOddLay(newOddLay);
     calculateLayProfit(oddBack, newOddLay, amountBack);
+
   };
 
   const calculateBackProfit = (oddBackValue, apostarEmBackValue) => {
@@ -58,15 +60,34 @@ export const Calculator = () => {
     }
   };
 
-  const calculateAmountLayToInvest = () => {
-    console.log('teste')
+  const calculateAmountLayToInvest = (oddLayValue, profitLayValue) => {
+    console.log('amountLayToInvest.init', oddLayValue, profitLayValue)
+    const [oddLayStd, profitLay] = [oddLayValue, profitLayValue].map(formatOdd);
+    console.log('amountLayToInvest.oddLayStd, profitLay', oddLayStd, profitLay)
+    if (!isNaN(oddLayStd) && !isNaN(profitLay)) {
+      // equação
+      const amountLayToInvest = (oddLayStd - 1) * profitLay;
+      console.log('amountLayToInvest.IF1', amountLayToInvest)
+      // seta o profit no lay
+      setAmountLayToInvest(amountLayToInvest.toFixed(4));
+    } else {
+      console.log('amountLayToInvest.IF2')
+      setAmountLayToInvest('');
+    }
   }
+
+  useEffect(() => {
+    
+    calculateAmountLayToInvest(oddLay, profitLay)
+
+  }, [profitLay])
 
   return (
     <S.Container>
       <BackToLayComponent 
         amountBack={amountBack}
-        amountLay={calculateAmountLayToInvest}
+        amountLay={amountLay}
+        amountLayToInvest={amountLayToInvest}
         handleBetInBackChange={handleBetInBackChange}
         handleOddBackChange={handleOddBackChange}
         handleOddLayChange={handleOddLayChange}

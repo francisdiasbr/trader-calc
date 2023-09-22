@@ -4,7 +4,7 @@ import {BackToLayComponentProps} from './types';
 
 const BackToLayComponent = ({
   amountBack,
-  amountLay,
+  amountLayToInvest,
   handleBetInBackChange,
   handleOddBackChange,
   handleOddLayChange,
@@ -41,7 +41,7 @@ const BackToLayComponent = ({
         </S.Cell>
         <S.Cell>
           <S.Text>2-APOSTAR EM LAY</S.Text>
-          <S.Result>{amountLay}</S.Result>
+          <S.Result>{amountLayToInvest}</S.Result>
         </S.Cell>
       </S.Row>
       <S.Row>
