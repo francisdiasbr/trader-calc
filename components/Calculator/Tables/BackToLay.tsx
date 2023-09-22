@@ -4,6 +4,7 @@ import {BackToLayComponentProps} from './types';
 
 const BackToLayComponent = ({
   amountBack,
+  amountLay,
   handleBetInBackChange,
   handleOddBackChange,
   handleOddLayChange,
@@ -13,7 +14,7 @@ const BackToLayComponent = ({
   profitLay
 }: BackToLayComponentProps) => {
   return (
-    <div>
+    <S.TableContainer>
       <h3>
         BACK-LAY
       </h3>
@@ -40,7 +41,7 @@ const BackToLayComponent = ({
         </S.Cell>
         <S.Cell>
           <S.Text>2-APOSTAR EM LAY</S.Text>
-          <S.Result>$</S.Result>
+          <S.Result>{amountLay}</S.Result>
         </S.Cell>
       </S.Row>
       <S.Row>
@@ -76,7 +77,7 @@ const BackToLayComponent = ({
           <S.Result>$</S.Result>
         </S.Cell>
       </S.Row>
-    </div>
+    </S.TableContainer>
   )
 }
 

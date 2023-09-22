@@ -1,5 +1,6 @@
 export interface BackToLayComponentProps {
   amountBack: string
+  amountLay: string
   handleBetInBackChange: (event) => void
   handleOddBackChange: (event) => void
   handleOddLayChange: (event) => void

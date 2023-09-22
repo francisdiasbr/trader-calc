@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 
 import * as S from './styles';
 import {BackToLayComponent, LayToBackComponent} from './Tables';
+import {formatOdd} from './utils';
 
 export const Calculator = () => {
   const [amountBack, setAmountBack] = useState('');
+  const [amountLay, setAmountLay] = useState('');
   const [oddBack, setOddBack] = useState('');
   const [oddLay, setOddLay] = useState('');
   const [profitBack, setProfitBack] = useState('');
   const [profitLay, setProfitLay] = useState('');
 
+  const handleBetInBackChange = (event) => {
+    const newBetInBack = event.target.value;
+    setAmountBack(newBetInBack);
+    calculateBackProfit(oddBack, newBetInBack);
+  };
+  
   const handleOddBackChange = (event) => {
     const newOddBack = event.target.value;
     setOddBack(newOddBack);
     calculateBackProfit(newOddBack, amountBack);
-  };
-
-  const handleBetInBackChange = (event) => {
-    const newApostarEmBack = event.target.value;
-    setAmountBack(newApostarEmBack);
-    calculateBackProfit(oddBack, newApostarEmBack);
   };
 
   const handleOddLayChange = (event) => {
@@ -28,12 +30,15 @@ export const Calculator = () => {
     calculateLayProfit(oddBack, newOddLay, amountBack);
   };
 
-  const calculateBackProfit = (odd, apostar) => {
-    const oddBackValue = parseFloat(odd.replace(',', '.'));
-    const apostarEmBackValue = parseFloat(apostar.replace(',', '.'));
+  const calculateBackProfit = (oddBackValue, apostarEmBackValue) => {
+    // padroniza
+    const oddBackStd = formatOdd(oddBackValue)
+    const apostarEmBack = formatOdd(apostarEmBackValue)
 
-    if (!isNaN(oddBackValue) && !isNaN(apostarEmBackValue)) {
-      const lucro = (oddBackValue - 1) * apostarEmBackValue;
+    if (!isNaN(oddBackStd) && !isNaN(apostarEmBack)) {
+      // equação
+      const lucro = (oddBackStd - 1) * apostarEmBack;
+      // seta o profit no back
       setProfitBack(lucro.toFixed(4));
     } else {
       setProfitBack('');
@@ -41,28 +46,33 @@ export const Calculator = () => {
   };
 
   const calculateLayProfit = (oddBackValue, oddLayValue, apostarEmBackValue) => {
-    const oddBackFloat = parseFloat(oddBackValue.replace(',', '.'));
-    const oddLayFloat = parseFloat(oddLayValue.replace(',', '.'));
-    const apostarEmBackFloat = parseFloat(apostarEmBackValue.replace(',', '.'));
+    const [oddBackStd, oddLayStd, apostarEmBack] = [oddBackValue, oddLayValue, apostarEmBackValue].map(formatOdd);
 
-    if (!isNaN(oddBackFloat) && !isNaN(oddLayFloat) && !isNaN(apostarEmBackFloat)) {
-      const lucroLay = (oddBackFloat / oddLayFloat) * apostarEmBackFloat;
+    if (!isNaN(oddBackStd) && !isNaN(oddLayStd) && !isNaN(apostarEmBack)) {
+      // equação
+      const lucroLay = (oddBackStd / oddLayStd) * apostarEmBack;
+      // seta o profit no lay
       setProfitLay(lucroLay.toFixed(4));
     } else {
       setProfitLay('');
     }
   };
 
+  const calculateAmountLayToInvest = () => {
+    console.log('teste')
+  }
+
   return (
     <S.Container>
       <BackToLayComponent 
         amountBack={amountBack}
+        amountLay={calculateAmountLayToInvest}
         handleBetInBackChange={handleBetInBackChange}
         handleOddBackChange={handleOddBackChange}
         handleOddLayChange={handleOddLayChange}
         oddBack={oddBack}
-        profitBack={profitBack}
         oddLay={oddLay}
+        profitBack={profitBack}
         profitLay={profitLay}
       />
       <br />

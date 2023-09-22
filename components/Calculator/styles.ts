@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   border: 1px solid gray;
+  border-radius: 20px;
   padding: 24px;
   display: flex;
   flex-direction: column
@@ -32,6 +33,10 @@ export const Result = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direcion: row;
+`
+
+export const TableContainer = styled.div`
+  justify-content: center;
 `
 
 export const Text = styled.div`
