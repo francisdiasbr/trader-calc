@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+import {calculateBackProfit, calculateLayProfit, calculateAmountLayToInvest, calculateProfitsBack} from './calculations';
 import * as S from './styles';
 import {BackToLayComponent, LayToBackComponent} from './Tables';
-import {calculateBackProfit, calculateLayProfit, calculateAmountLayToInvest, formatStringToNumber} from './utils';
+import {formatStringToNumber} from './utils';
+
+const teste = calculateProfitsBack(200, 1.10, 1090.91)
+
+console.log('teste', teste.toFixed(3))
 
 export const Calculator = () => {
   const [amountBack, setAmountBack] = useState<string>('');
@@ -10,8 +15,9 @@ export const Calculator = () => {
   const [amountLayToInvest, setAmountLayToInvest] = useState(''); 
   const [oddBack, setOddBack] = useState('');
   const [oddLay, setOddLay] = useState(''); 
-  const [profitBack, setProfitBack] = useState<string>('');
+  const [profitBack, setProfitBack] = useState('');
   const [profitLay, setProfitLay] = useState('');
+  const [profitBackHedge, setProfitBackHedge] = useState('');
 
   const handleBetInBackChange = (event) => {
     const newBetInBack = event.target.value;
@@ -52,13 +58,30 @@ export const Calculator = () => {
     const calcAmountLayToInvest = calculateAmountLayToInvest(oddLayNumber, profitLayNumber)
 
     const amountLayToInvestString = calcAmountLayToInvest.toFixed(2)
+    console.log('amountLayToInvest', typeof amountLayToInvest)
 
     setAmountLayToInvest(amountLayToInvestString)
   }
 
+  const handleBackProfit = () => {
+    const oddLayNumber = formatStringToNumber(oddLay)
+    console.log('oddLayNumber', typeof oddLayNumber)
+    const profitBackNumber = formatStringToNumber(profitBack)
+    console.log('profitBackNumber', typeof profitBackNumber)
+    const profitLayNumber = formatStringToNumber(profitLay)
+    console.log('profitLayNumber', profitLayNumber)
+
+    const calcBackProfitValue = calculateProfitsBack(profitBackNumber, oddLayNumber, profitLayNumber)
+    const calcBackProfitString = calcBackProfitValue.toFixed(2)
+
+    setProfitBackHedge(calcBackProfitString)
+  }
+
   useEffect(() => {
     handleAmountLayToInvest()
+    handleBackProfit()
   }, [profitLay])
+
 
   return (
     <S.Container>
@@ -73,6 +96,7 @@ export const Calculator = () => {
         oddLay={oddLay}
         profitBack={profitBack}
         profitLay={profitLay}
+        profitBackHedge={profitBackHedge}
       />
       <br />
       <LayToBackComponent 

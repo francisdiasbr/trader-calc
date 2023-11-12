@@ -11,7 +11,8 @@ const BackToLayComponent = ({
   oddBack,
   oddLay,
   profitBack,
-  profitLay
+  profitLay,
+  profitBackHedge
 }: BackToLayComponentProps) => {
   return (
     <S.TableContainer>
@@ -63,8 +64,8 @@ const BackToLayComponent = ({
           <S.Input></S.Input>
         </S.Cell>
         <S.Cell>
-          <S.Text>GANHOS LAY</S.Text>
-          <S.Result>$</S.Result>
+          <S.Text>GANHOS BACK</S.Text>
+          <S.Result>{profitBackHedge}</S.Result>
         </S.Cell>
       </S.Row>
       <S.Row>
@@ -73,7 +74,7 @@ const BackToLayComponent = ({
           <S.Text>-</S.Text>
         </S.Cell>
         <S.Cell>
-          <S.Text>GANHOS BACK</S.Text>
+          <S.Text>GANHOS LAY</S.Text>
           <S.Result>$</S.Result>
         </S.Cell>
       </S.Row>

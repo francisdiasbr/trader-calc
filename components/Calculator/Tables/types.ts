@@ -9,4 +9,5 @@ export interface BackToLayComponentProps {
   oddLay: string
   profitBack: string
   profitLay: string
+  profitBackHedge: string
 }
