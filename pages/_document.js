@@ -1,11 +1,34 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
-const APP_NAME = 'Giugliani'
-const APP_DESCRIPTION = 'Giugliani - Consultoria em Cidadania Italiana';
+const APP_NAME = 'Trader Calc'
+const APP_DESCRIPTION = 'V 1.0';
 
 class DocumentComponent extends Document {
   static async getInitialProps(ctx) {
-    return await Document.getInitialProps(ctx)
+
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () => originalRenderPage({
+        enhanceApp: (App) => (props) => (
+            <StyleSheetManager sheet={sheet.instance} disableVendorPrefixes={true}>
+              <App {...props} />
+            </StyleSheetManager>
+        )
+      })
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: [
+          initialProps.styles,
+          sheet.getStyleElement(),
+        ]
+      }
+    } finally {
+      sheet.seal()
+    }
   }
 
   render() {
