@@ -1,4 +1,4 @@
-export const formatOdd = (value: number | string) => {
+export const formatStringToNumber = (value: number | string) => {
   if (typeof value === 'string') {
     const padronizedValue = value.replace(',', '.');
     const floatValue = parseFloat(padronizedValue);

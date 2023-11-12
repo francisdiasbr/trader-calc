@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './styles';
 import {BackToLayComponent, LayToBackComponent} from './Tables';
-import {calculateBackProfit, formatOdd} from './utils';
+import {calculateBackProfit, formatStringToNumber} from './utils';
 
 export const Calculator = () => {
   const [amountBack, setAmountBack] = useState<string>('');
@@ -24,7 +24,7 @@ export const Calculator = () => {
     setOddBack(oddBackString)
 
     const amountBackNumber = parseInt(amountBack)
-    const oddBackNumber = formatOdd(oddBackString)
+    const oddBackNumber = formatStringToNumber(oddBackString)
 
     const backProfitValue = calculateBackProfit(oddBackNumber, amountBackNumber)
     const backProfitString = backProfitValue.toFixed(4)
@@ -39,7 +39,7 @@ export const Calculator = () => {
   };
 
   const calculateLayProfit = (oddBackValue, oddLayValue, apostarEmBackValue) => {
-    const [oddBackStd, oddLayStd, apostarEmBack] = [oddBackValue, oddLayValue, apostarEmBackValue].map(formatOdd);
+    const [oddBackStd, oddLayStd, apostarEmBack] = [oddBackValue, oddLayValue, apostarEmBackValue].map(formatStringToNumber);
 
     if (!isNaN(oddBackStd) && !isNaN(oddLayStd) && !isNaN(apostarEmBack)) {
       // equação
@@ -52,7 +52,7 @@ export const Calculator = () => {
   };
 
   const calculateAmountLayToInvest = (oddLayValue, profitLayValue) => {
-    const [oddLayStd, profitLay] = [oddLayValue, profitLayValue].map(formatOdd);
+    const [oddLayStd, profitLay] = [oddLayValue, profitLayValue].map(formatStringToNumber);
     if (!isNaN(oddLayStd) && !isNaN(profitLay)) {
       // equação
       const amountLayToInvest = (oddLayStd - 1) * profitLay;
