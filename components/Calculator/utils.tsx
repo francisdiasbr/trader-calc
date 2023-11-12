@@ -8,6 +8,7 @@ export const formatStringToNumber = (value: number | string) => {
 }
 
 /** 
+ * Lucro Back
  * odd: odd em back
  * valor: valor apostado em back para calcular o lay
  */
@@ -17,9 +18,18 @@ export function calculateBackProfit(oddBack: number, value: number) {
 }
 
 /**
- * 
+ * Lucro Lay
  */
 export function calculateLayProfit(oddBack: number, oddLay: number, value: number) {
   let profit: number = (oddBack / oddLay) * value;
   return profit;
+}
+
+/**
+ * Valor a apostar em lay
+ * 
+ */
+export function calculateAmountLayToInvest(oddLay: number, value: number) {
+  let amount: number = (oddLay - 1) * value;
+  return amount;
 }

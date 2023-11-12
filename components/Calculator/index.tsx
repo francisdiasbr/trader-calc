@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './styles';
 import {BackToLayComponent, LayToBackComponent} from './Tables';
-import {calculateBackProfit, calculateLayProfit, formatStringToNumber} from './utils';
+import {calculateBackProfit, calculateLayProfit, calculateAmountLayToInvest, formatStringToNumber} from './utils';
 
 export const Calculator = () => {
   const [amountBack, setAmountBack] = useState<string>('');
@@ -12,8 +12,8 @@ export const Calculator = () => {
   const [oddLay, setOddLay] = useState(''); 
   const [profitBack, setProfitBack] = useState<string>('');
   const [profitLay, setProfitLay] = useState('');
-  const [oddBackNumber, setOddBackNumber] = useState<number | null>(null); // Adicionado estado para oddBackNumber
-
+  const [oddBackNumber, setOddBackNumber] = useState<number | null>(null);
+  const [oddLayNumber, setOddLayNumber] = useState<number | null>(null);
 
   const handleBetInBackChange = (event) => {
     const newBetInBack = event.target.value;
@@ -40,6 +40,7 @@ export const Calculator = () => {
   
     const amountBackNumber = parseInt(amountBack)
     const oddLayNumber = formatStringToNumber(oddLayString)
+    setOddLayNumber(oddLayNumber)
 
     const layProfitValue = calculateLayProfit(oddBackNumber, oddLayNumber, amountBackNumber)
     const layProfitString = layProfitValue.toFixed(2)
@@ -47,22 +48,18 @@ export const Calculator = () => {
     setProfitLay(layProfitString)
   };
 
-  const calculateAmountLayToInvest = (oddLayValue, profitLayValue) => {
-    const [oddLayStd, profitLay] = [oddLayValue, profitLayValue].map(formatStringToNumber);
-    if (!isNaN(oddLayStd) && !isNaN(profitLay)) {
-      // equação
-      const amountLayToInvest = (oddLayStd - 1) * profitLay;
-      // seta o profit no lay
-      setAmountLayToInvest(amountLayToInvest.toFixed(4));
-    } else {
-      setAmountLayToInvest('');
-    }
+  const handleAmountLayToInvest = () => {
+    const profitLayNumber = formatStringToNumber(profitLay)
+    
+    const calcAmountLayToInvest = calculateAmountLayToInvest(oddLayNumber, profitLayNumber)
+
+    const amountLayToInvestString = calcAmountLayToInvest.toFixed(2)
+
+    setAmountLayToInvest(amountLayToInvestString)
   }
 
   useEffect(() => {
-    
-    calculateAmountLayToInvest(oddLay, profitLay)
-
+    handleAmountLayToInvest()
   }, [profitLay])
 
   return (
