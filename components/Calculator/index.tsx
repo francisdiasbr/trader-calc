@@ -12,8 +12,6 @@ export const Calculator = () => {
   const [oddLay, setOddLay] = useState(''); 
   const [profitBack, setProfitBack] = useState<string>('');
   const [profitLay, setProfitLay] = useState('');
-  const [oddBackNumber, setOddBackNumber] = useState<number | null>(null);
-  const [oddLayNumber, setOddLayNumber] = useState<number | null>(null);
 
   const handleBetInBackChange = (event) => {
     const newBetInBack = event.target.value;
@@ -26,10 +24,9 @@ export const Calculator = () => {
 
     const amountBackNumber = parseInt(amountBack)
     const oddBackNumber = formatStringToNumber(oddBackString)
-    setOddBackNumber(oddBackNumber)
 
     const backProfitValue = calculateBackProfit(oddBackNumber, amountBackNumber)
-    const backProfitString = backProfitValue.toFixed(4)
+    const backProfitString = backProfitValue.toFixed(2)
 
     setProfitBack(backProfitString)
   };
@@ -40,7 +37,7 @@ export const Calculator = () => {
   
     const amountBackNumber = parseInt(amountBack)
     const oddLayNumber = formatStringToNumber(oddLayString)
-    setOddLayNumber(oddLayNumber)
+    const oddBackNumber = formatStringToNumber(oddBack)
 
     const layProfitValue = calculateLayProfit(oddBackNumber, oddLayNumber, amountBackNumber)
     const layProfitString = layProfitValue.toFixed(2)
@@ -51,6 +48,7 @@ export const Calculator = () => {
   const handleAmountLayToInvest = () => {
     const profitLayNumber = formatStringToNumber(profitLay)
     
+    const oddLayNumber = formatStringToNumber(oddLay)
     const calcAmountLayToInvest = calculateAmountLayToInvest(oddLayNumber, profitLayNumber)
 
     const amountLayToInvestString = calcAmountLayToInvest.toFixed(2)
