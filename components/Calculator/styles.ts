@@ -5,7 +5,7 @@ export const Container = styled.div`
   border-radius: 20px;
   padding: 24px;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 `
 
 export const Cell = styled.div`
@@ -19,6 +19,12 @@ export const Cell = styled.div`
 export const Input = styled.input`
   border-radius: 3px;
   border-width: 0.5px;
+`
+
+export const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `
 
 export const Result = styled.div`
@@ -44,4 +50,9 @@ export const Text = styled.div`
   color: blue;
   margin-right: 8px;
   width: 200px;
+`
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
 `
