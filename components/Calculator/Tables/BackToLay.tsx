@@ -5,14 +5,17 @@ import {BackToLayComponentProps} from './types';
 const BackToLayComponent = ({
   amountBack,
   amountLayToInvest,
+  comission,
   handleBetInBackChange,
+  handleComissionChange,
   handleOddBackChange,
   handleOddLayChange,
   oddBack,
   oddLay,
   profitBack,
   profitLay,
-  profitBackHedge
+  profitBackHedge,
+  profitLayHedge
 }: BackToLayComponentProps) => {
   return (
     <S.TableContainer>
@@ -61,7 +64,10 @@ const BackToLayComponent = ({
       <S.Row>
         <S.Cell>
           <S.Text>COMISSÃO</S.Text>
-          <S.Input></S.Input>
+          <S.Input
+            onChange={handleComissionChange}
+            value={comission}
+          />
         </S.Cell>
         <S.Cell>
           <S.Text>GANHOS BACK</S.Text>
@@ -75,7 +81,7 @@ const BackToLayComponent = ({
         </S.Cell>
         <S.Cell>
           <S.Text>GANHOS LAY</S.Text>
-          <S.Result>$</S.Result>
+          <S.Result>{profitLayHedge}</S.Result>
         </S.Cell>
       </S.Row>
     </S.TableContainer>
